@@ -6,10 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-const dirname =
-	typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const dirname = import.meta.dirname;
 const basePath = (process.env.BASE_PATH ?? '') as '' | `/${string}`;
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
