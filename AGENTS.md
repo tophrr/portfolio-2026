@@ -33,7 +33,7 @@ Verify in this order: format/lint → `check` → tests.
 
 - Commit messages are **Conventional Commits**: `type(scope): subject`. Enforced by commitlint (`.husky/commit-msg` locally, CI on PR titles and pushed commits).
 - Types: `feat fix chore docs style refactor test build ci perf revert`. Scopes (optional): `routes lib stories build ci deps docs`. Subject is imperative, lowercase, no trailing period, header ≤72 chars. Use a body only when the _why_ isn't obvious; add a `BREAKING CHANGE:` footer for breaks.
-- Branches are short-lived, off `main`: `feat/… fix/… chore/… docs/… ci/… refactor/… test/… deps/…` + kebab-case slug. Never commit to `main`; open a PR and **squash-merge** (the PR title becomes the commit on `main`, so it must be a valid Conventional Commit).
+- Solo repo: commit directly to `main`. For risky or multi-step work you may use a short-lived branch (`feat/… fix/… chore/… docs/… ci/… refactor/… test/… deps/…` + kebab-case slug); if you open a PR, **squash-merge** it and make the PR title a valid Conventional Commit (it becomes the commit on `main`).
 - `main` is production and continuously deployed. No release tags. Don't rewrite pushed `main` history.
 - Husky runs `lint-staged` (`prettier --write`) on `pre-commit`. Don't use `--no-verify`; CI re-checks.
 - Verify before pushing: `bun run format` → `bun run lint` → `bun run check` → `bun run test:unit -- --run`. CI enforces lint, typecheck, and `test:unit` — which includes the browser and Storybook vitest projects, so it installs Chromium; Playwright e2e and `build-storybook` stay local. One logical change per commit; commit `bun.lock` with any `package.json` change; no `wip`/`fixup` commits on `main`; no AI-attribution trailers.
