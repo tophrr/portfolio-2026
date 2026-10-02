@@ -36,7 +36,7 @@ Verify in this order: format/lint → `check` → tests.
 - Branches are short-lived, off `main`: `feat/… fix/… chore/… docs/… ci/… refactor/… test/… deps/…` + kebab-case slug. Never commit to `main`; open a PR and **squash-merge** (the PR title becomes the commit on `main`, so it must be a valid Conventional Commit).
 - `main` is production and continuously deployed. No release tags. Don't rewrite pushed `main` history.
 - Husky runs `lint-staged` (`prettier --write`) on `pre-commit`. Don't use `--no-verify`; CI re-checks.
-- Verify before pushing: `bun run format` → `bun run lint` → `bun run check` → `bun run test:unit -- --run`. CI enforces lint, typecheck, and unit tests (e2e and Storybook stay local). One logical change per commit; commit `bun.lock` with any `package.json` change; no `wip`/`fixup` commits on `main`; no AI-attribution trailers.
+- Verify before pushing: `bun run format` → `bun run lint` → `bun run check` → `bun run test:unit -- --run`. CI enforces lint, typecheck, and `test:unit` — which includes the browser and Storybook vitest projects, so it installs Chromium; Playwright e2e and `build-storybook` stay local. One logical change per commit; commit `bun.lock` with any `package.json` change; no `wip`/`fixup` commits on `main`; no AI-attribution trailers.
 - Never commit `build/`, `.svelte-kit/`, `storybook-static/`, or `test-results/`.
 
 ## Svelte authoring
