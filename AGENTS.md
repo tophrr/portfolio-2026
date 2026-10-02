@@ -1,31 +1,44 @@
-## Project Configuration
+# portfolio-2026
 
-- **Language**: TypeScript
-- **Package Manager**: bun
-- **Add-ons**: prettier, eslint, tailwindcss, sveltekit-adapter, ai-tools, storybook, mdsvex, playwright, vitest
+SvelteKit 5 (runes-only) static portfolio deployed to GitHub Pages. TypeScript, bun.
 
----
+## Commands
 
-You are able to use the Svelte MCP server, where you have access to comprehensive Svelte 5 and SvelteKit documentation. Here's how to use the available tools effectively:
+- Install: `bun install --frozen-lockfile`
+- Dev server: `bun run dev`
+- Typecheck: `bun run check` (runs `svelte-kit sync` + `svelte-check`)
+- Lint: `bun run lint` (prettier `--check` then eslint); format: `bun run format`
+- Unit/component tests: `bun run test:unit -- --run` (bare `test:unit` watches)
+- E2E: `bun run test:e2e` (installs Playwright, then builds + previews on :4173)
+- Everything: `bun run test` → unit then e2e
+- Build: `bun run build`; Storybook: `bun run storybook`
 
-## Available Svelte MCP Tools:
+Verify in this order: format/lint → `check` → tests.
 
-### 1. list-sections
+## Gotchas
 
-Use this FIRST to discover all available documentation sections. Returns a structured list with titles, use_cases, and paths.
-When asked about Svelte or SvelteKit topics, ALWAYS use this tool at the start of the chat to find relevant sections.
+- Package manager is **bun** even though `README.md` shows npm; CI uses bun.
+- There is **no `svelte.config.js`**. All SvelteKit config lives in `vite.config.ts`: `adapter-static` (fallback `404.html`), mdsvex (`.md`/`.svx` valid routes/components), and `runes: true` forced for every file outside `node_modules`. Edit `vite.config.ts`, not a SvelteKit config file.
+- Static-only: `src/routes/+layout.ts` sets `prerender = true` and `trailingSlash = 'always'`. Every route must prerender — no server routes, form actions, or dynamic SSR.
+- `BASE_PATH` is baked in at **build** time (dev base is `''`). The deploy workflow sets `BASE_PATH=/<repo>`; reproduce a Pages build with `BASE_PATH=/portfolio-2026 bun run build`.
+- Deploy: push to `main` → `.github/workflows/deploy.yml` → GitHub Pages.
+- Svelte 5 runes only (no `export let`, `on:click`, `<slot>`).
+- Prettier: tabs, single quotes, no trailing commas, printWidth 100, Tailwind class sorting keyed to `src/routes/layout.css`. Run `format` before committing.
+- Vitest has `expect.requireAssertions: true` — every test needs an assertion.
+- Test naming decides the runner: vitest needs `*.{test,spec}.*` (`.svelte.` prefix = browser project), Playwright needs `*.e2e.{ts,js}`.
+- Storybook stories are `*.stories.svelte` (svelte-csf addon), not `*.stories.ts`.
+- `src/stories/`, `src/lib/vitest-examples/`, and `src/routes/demo/` are generated scaffold — not portfolio code. Tailwind v4 is CSS-first (`@import 'tailwindcss'` in `src/routes/layout.css`); there is no `tailwind.config`.
 
-### 2. get-documentation
+## Git & commits
 
-Retrieves full documentation content for specific sections. Accepts single or multiple sections.
-After calling the list-sections tool, you MUST analyze the returned documentation sections (especially the use_cases field) and then use the get-documentation tool to fetch ALL documentation sections that are relevant for the user's task.
+- Commit messages are **Conventional Commits**: `type(scope): subject`. Enforced by commitlint (`.husky/commit-msg` locally, CI on PR titles and pushed commits).
+- Types: `feat fix chore docs style refactor test build ci perf revert`. Scopes (optional): `routes lib stories build ci deps docs`. Subject is imperative, lowercase, no trailing period, header ≤72 chars. Use a body only when the _why_ isn't obvious; add a `BREAKING CHANGE:` footer for breaks.
+- Branches are short-lived, off `main`: `feat/… fix/… chore/… docs/… ci/… refactor/… test/… deps/…` + kebab-case slug. Never commit to `main`; open a PR and **squash-merge** (the PR title becomes the commit on `main`, so it must be a valid Conventional Commit).
+- `main` is production and continuously deployed. No release tags. Don't rewrite pushed `main` history.
+- Husky runs `lint-staged` (`prettier --write`) on `pre-commit`. Don't use `--no-verify`; CI re-checks.
+- Verify before pushing: `bun run format` → `bun run lint` → `bun run check` → `bun run test:unit -- --run`. CI enforces lint, typecheck, and `test:unit` — which includes the browser and Storybook vitest projects, so it installs Chromium; Playwright e2e and `build-storybook` stay local. One logical change per commit; commit `bun.lock` with any `package.json` change; no `wip`/`fixup` commits on `main`; no AI-attribution trailers.
+- Never commit `build/`, `.svelte-kit/`, `storybook-static/`, or `test-results/`.
 
-### 3. svelte-autofixer
+## Svelte authoring
 
-Analyzes Svelte code and returns issues and suggestions.
-You MUST use this tool whenever writing Svelte code before sending it to the user. Keep calling it until no issues or suggestions are returned.
-
-### 4. playground-link
-
-Generates a Svelte Playground link with the provided code.
-After completing the code, ask the user if they want a playground link. Only call this tool after user confirmation and NEVER if code was written to files in their project.
+Validate any `.svelte` / `.svelte.ts` change with the Svelte autofixer before finalizing. If the Svelte MCP tools are available use them; otherwise use the CLI documented in `.github/skills/svelte-code-writer/SKILL.md` (`npx @sveltejs/mcp …`, escape `$` as `\$` in shell). There is also a `.github/agents/svelte-file-editor.agent.md` workflow.
