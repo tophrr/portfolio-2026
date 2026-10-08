@@ -1,13 +1,563 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>halo dunia!</h1>
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christopher G | Portfolio</title>
+    <meta name="description" content="[TODO] Work with you." />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:title" content="Christopher G | Portfolio" />
+    <meta property="og:description" content="[TODO] Work with you." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <!-- hello there! -->
+  </head>
+
+  <body>
+    <a class="skip-link" href="#about">Skip to content</a>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="bg" id="bg" aria-hidden="true">
+      <video
+        class="bg__video"
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="assets/videos/hero-poster.jpg"
+      >
+        <source
+          src="assets/videos/bg-showreel.av1.mp4"
+          type="video/mp4; codecs=av01.0.05M.08"
+        />
+        <source src="assets/videos/bg-showreel.h264.mp4" type="video/mp4" />
+      </video>
+      <div class="bg__scrim"></div>
+    </div>
+
+    <!-- NAV -->
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__brand" href="#top" aria-label="Christopher G. - home">
+          <img
+            class="nav__logo"
+            src="assets/logo.svg"
+            alt=""
+            width="33"
+            height="21"
+          />
+          <span class="nav__brand-handle">@ tophrr</span>
+        </a>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a href="#about" data-nav>About</a>
+          <a href="#stack" data-nav>Stack</a>
+          <a href="#work" data-nav>Work</a>
+          <a href="#contact" data-nav>Connect</a>
+        </nav>
+
+        <a
+          class="btn btn--ghost nav__cta"
+          href="https://instagram.com/chrisg.661"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="dot" aria-hidden="true"></span>
+          Instagram
+        </a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-label="Introduction">
+        <div class="hero__grid" aria-hidden="true"></div>
+
+        <div class="hero__content">
+          <h1 class="hero__title reveal" style="--delay: 60ms">
+            Christopher<br /><span class="hero__title-dim">Gijoh</span>
+          </h1>
+
+          <p class="hero__role reveal" style="--delay: 140ms">
+            Full-Stack Developer &amp; Creative Visual Storyteller
+          </p>
+
+          <p class="hero__lede reveal" style="--delay: 220ms">
+            Tinkering across the stack, writing tidy code, and telling stories through my own lens.
+          </p>
+
+          <div class="hero__actions reveal" style="--delay: 300ms">
+            <a class="btn btn--solid" href="#work">View selected work</a>
+            <a
+              class="btn btn--ghost"
+              href="https://chrisg.my.id/design-portfolio"
+              target="_blank"
+              rel="noopener"
+              >Designs</a
+            >
+            <a
+              class="btn btn--ghost"
+              href="https://chrisg.my.id/photo-video-portfolio"
+              target="_blank"
+              rel="noopener"
+              >Photo / Video</a
+            >
+          </div>
+        </div>
+
+        <div class="hero__foot">
+          <div class="hero__foot-cell">
+            <span class="label">Based in</span>
+            <span class="value">Greater Jakarta / Tangerang, ID</span>
+          </div>
+          <div class="hero__foot-cell">
+            <span class="label">Focus</span>
+            <span class="value">Web &middot; Infra &middot; IoT &middot; Cinema</span>
+          </div>
+          <div class="hero__foot-cell hero__foot-cell--status">
+            <span class="label">Status</span>
+            <span class="value">
+              <span class="dot dot--accent" aria-hidden="true"></span>
+              <span
+                class="rotator"
+                data-rotator
+                data-lines="Desperately seeking internship.|Will code anything.|Vibe codes responsibly.|Barely surviving.|Best friends with AI."
+              >
+                <span class="rotator__text"></span
+                ><span class="rotator__caret" aria-hidden="true"></span>
+              </span>
+            </span>
+          </div>
+          <a class="hero__foot-cell hero__scroll" href="#about">
+            <span class="label">Works</span>
+            <span class="value"
+              >Scroll down
+              <span class="arrow arrow--down" aria-hidden="true"></span
+            ></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- BIOGRAPHY -->
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <span class="label">01 — Biography</span>
+            <span class="label label--dim"
+              >Informatics @ Universitas Pelita Harapan</span
+            >
+          </div>
+
+          <p class="statement reveal" id="about-title">
+            An undergraduate studying informatics. Exploring computing across stacks, from small microcontrollers and self-hosted environments to web services and UI design.
+          </p>
+
+          <div class="bio-grid">
+            <div class="bio-grid__col reveal">
+              <span class="label">Background</span>
+              <p class="body-text">
+                Most of my time outside coursework is spent testing ideas, breaking things in my homelab, and figuring out how to write software that lasts. Driven by boredom, I'm always looking for the next challenge. Whether it's a new programming language, a complex system architecture, or a creative design problem, I'm always eager to dive in and learn something new. I'm still early in my journey, but hereby I invite you to join me on this adventure.
+              </p>
+            </div>
+
+            <div class="bio-grid__col reveal" style="--delay: 80ms">
+              <span class="label">My approaches</span>
+              <ul class="tag-list">
+                <li>Keep it simple.</li>
+                <li>Quality over quantity.</li>
+                <li>Clean and classy.</li>
+                <li>Enjoy the process!</li>
+              </ul>
+            </div>
+
+            <div class="bio-grid__col reveal" style="--delay: 160ms">
+              <span class="label">Involvement</span>
+              <ul class="row-list">
+                <li>
+                  <span>BEM UPH</span>
+                  <span class="row-list__meta">Media &amp; Communication</span>
+                </li>
+                <li>
+                  <span>HMIF UPH</span>
+                  <span class="row-list__meta">Creative Hub Division</span>
+                </li>
+                <li>
+                  <span>Film &amp; Production</span>
+                  <span class="row-list__meta">Capture &middot; Edit &middot; Grade</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STACK -->
+      <section class="section" id="stack" aria-labelledby="stack-title">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <span class="label">02 — Stack &amp; Tooling</span>
+            <span class="label label--dim"
+              >Jack of all trades, master of... wait, what?</span
+            >
+          </div>
+
+          <h2 class="heading reveal" id="stack-title">
+            Tools I reach for daily. Across web, infrastructure, hardware, and
+            the editing desk.
+          </h2>
+        </div>
+
+        <div class="marquee-zone reveal">
+          <div class="marquee" data-marquee>
+            <div class="marquee__track">
+              <ul class="marquee__group">
+                <li class="chip">TypeScript</li>
+                <li class="chip">JavaScript</li>
+                <li class="chip">Python</li>
+                <li class="chip">Go</li>
+                <li class="chip">SQL</li>
+                <li class="chip">Next.js</li>
+                <li class="chip">React</li>
+                <li class="chip">Svelte</li>
+                <li class="chip">Tailwind CSS</li>
+                <li class="chip">Hono</li>
+                <li class="chip">Node.js</li>
+                <li class="chip">FastAPI</li>
+                <li class="chip">PostgreSQL</li>
+                <li class="chip">Drizzle ORM</li>
+                <li class="chip">Supabase</li>
+                <li class="chip chip--accent">Cloudflare Workers</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="marquee marquee--reverse" data-marquee>
+            <div class="marquee__track">
+              <ul class="marquee__group">
+                <li class="chip">Proxmox VE</li>
+                <li class="chip">Linux</li>
+                <li class="chip">Ubuntu</li>
+                <li class="chip">Docker</li>
+                <li class="chip">Caddy</li>
+                <li class="chip">Nginx</li>
+                <li class="chip">MikroTik RouterOS</li>
+                <li class="chip">WireGuard</li>
+                <li class="chip">GitHub Actions</li>
+                <li class="chip">ESP32</li>
+                <li class="chip">Arduino</li>
+                <li class="chip">PlatformIO</li>
+                <li class="chip">MQTT</li>
+                <li class="chip">ESP-NOW</li>
+                <li class="chip chip--accent">DaVinci Resolve</li>
+                <li class="chip">Lightroom</li>
+                <li class="chip">Figma</li>
+                <li class="chip">Canva</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap">
+          <dl class="stack-index reveal">
+            <div class="stack-index__row">
+              <dt>Web &amp; Backend</dt>
+              <dd>
+                TypeScript, JavaScript, Python, Go, SQL &middot; Next.js, React,
+                Svelte, Tailwind &middot; Hono, Node.js, FastAPI &middot; PostgreSQL, Drizzle,
+                Supabase, Cloudflare Workers
+              </dd>
+            </div>
+            <div class="stack-index__row">
+              <dt>Systems &amp; Infra</dt>
+              <dd>
+                Proxmox VE &middot; Linux (Fedora / Debian / Ubuntu) &middot; Docker &middot; Caddy &middot;
+                Nginx &middot; MikroTik RouterOS &middot; WireGuard &middot; GitHub Actions
+              </dd>
+            </div>
+            <div class="stack-index__row">
+              <dt>Embedded &amp; IoT</dt>
+              <dd>ESP32 family &middot; Arduino &middot; PlatformIO &middot; MQTT &middot; ESP-NOW</dd>
+            </div>
+            <div class="stack-index__row">
+              <dt>Media &amp; Design</dt>
+              <dd>
+                DaVinci Resolve Studio (colour &amp; post) &middot; Adobe Lightroom &middot;
+                Figma &middot; Canva
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="section" id="work" aria-labelledby="work-title">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <span class="label">03 — Featured Projects</span>
+            <span class="label label--dim">Selected / 06</span>
+          </div>
+
+          <h2 class="heading reveal" id="work-title">
+            A brief look at what I've been building.
+          </h2>
+
+          <div class="projects">
+            <div class="project reveal">
+              <span class="project__index">01</span>
+              <span class="project__body">
+                <span class="project__name">JUNO</span>
+                <span class="project__desc"
+                  >A personal homelab and testing ground for learning systems
+                  &amp; infrastructure.</span
+                >
+              </span>
+              <span class="project__tags">
+                <span class="chip-2">IaC</span>
+                <span class="chip-2">GitOps</span>
+                <span class="chip-2">Linux</span>
+                <span class="chip-2">KVM</span>
+                <span class="chip-2">MikroTik</span>
+                <span class="chip-2">Cloudflare</span>
+              </span>
+              <span class="project__private">Private</span>
+            </div>
+
+            <a
+              class="project reveal"
+              href="https://github.com/tophrr/aap-edge"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="project__index">02</span>
+              <span class="project__body">
+                <span class="project__name">AAP</span>
+                <span class="project__desc"
+                  >Acoustic ATCS Proxy (AAP) Node, an IoT edge device that
+                  monitors a black-box Adaptive Traffic Control System (ATCS)
+                  pedestrian crossing.</span
+                >
+              </span>
+              <span class="project__tags">
+                <span class="chip-2">C++</span>
+                <span class="chip-2">PlatformIO</span>
+                <span class="chip-2">MQTT</span>
+                <span class="chip-2">Node.js</span>
+                <span class="chip-2">Python</span>
+              </span>
+              <span
+                class="project__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+
+            <a
+              class="project reveal"
+              href="https://kitalakuin.vercel.app"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="project__index">03</span>
+              <span class="project__body">
+                <span class="project__name">KitaLaku.in</span>
+                <span class="project__desc"
+                  >A full-stack workspace for AI-assisted content planning,
+                  scheduling, approval, and analytics, built for agency
+                  teams.</span
+                >
+              </span>
+              <span class="project__tags">
+                <span class="chip-2">Next.js</span>
+                <span class="chip-2">Gemini API</span>
+              </span>
+              <span
+                class="project__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+
+            <a
+              class="project reveal"
+              href="https://github.com/tophrr/codecity"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="project__index">04</span>
+              <span class="project__body">
+                <span class="project__name">CodeCity</span>
+                <span class="project__desc"
+                  >Temporal Code City visualizes codebase evolution from git
+                  history via procedural 3D city generation.</span
+                >
+              </span>
+              <span class="project__tags">
+                <span class="chip-2">TypeScript</span>
+                <span class="chip-2">Git</span>
+              </span>
+              <span
+                class="project__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+
+            <a
+              class="project reveal"
+              href="https://github.com/tophrr/tjxplore"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="project__index">05</span>
+              <span class="project__body">
+                <span class="project__name">TJxplore</span>
+                <span class="project__desc"
+                  >An RAG-powered search engine and trip planner based on
+                  OpenStreetMap and the Transjakarta GTFS feed.</span
+                >
+              </span>
+              <span class="project__tags">
+                <span class="chip-2">OSM</span>
+                <span class="chip-2">Qdrant</span>
+                <span class="chip-2">Python</span>
+                <span class="chip-2">PostgreSQL</span>
+                <span class="chip-2">PostGIS</span>
+              </span>
+              <span
+                class="project__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+
+            <a
+              class="project reveal"
+              href="https://doi.org/10.1109/ICCRAIDS67816.2026.11519675"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="project__index">06</span>
+              <span class="project__body">
+                <span class="project__name">XGBoost Flood Prediction</span>
+                <span class="project__desc"
+                  >A published ML research paper on XGBoost for precision flood
+                  early warning in the Ciliwung River without explicit physical
+                  modeling.</span
+                >
+              </span>
+              <span class="project__tags">
+                <span class="chip-2">Python</span>
+                <span class="chip-2">XGBoost</span>
+              </span>
+              <span
+                class="project__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONNECT -->
+      <section
+        class="section section--connect"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <div class="wrap">
+          <div class="section__head reveal">
+            <span class="label">04 — Connect</span>
+            <span class="label label--dim">Want to work together?</span>
+          </div>
+
+          <h2 class="heading heading--lg reveal" id="contact-title">
+            Have a project, a problem, or a story worth telling?
+            <a class="link-inline" href="mailto:hello@chrisg.my.id"
+              >I'm here for you.<span
+                class="arrow arrow--up-right"
+                aria-hidden="true"
+              ></span
+            ></a>
+          </h2>
+
+          <div class="socials reveal">
+            <a
+              class="social"
+              href="https://github.com/tophrr"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="social__key">GitHub</span>
+              <span class="social__val">github.com/tophrr</span>
+              <span
+                class="social__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+            <a
+              class="social"
+              href="https://linkedin.com/in/christophergijoh"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="social__key">LinkedIn</span>
+              <span class="social__val">linkedin.com/in/christophergijoh</span>
+              <span
+                class="social__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+            <a
+              class="social"
+              href="https://youtube.com/@chrisg661"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="social__key">YouTube</span>
+              <span class="social__val">youtube.com/@chrisg661</span>
+              <span
+                class="social__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+            <a class="social" href="mailto:hello@chrisg.my.id">
+              <span class="social__key">Email</span>
+              <span class="social__val">hello@chrisg.my.id</span>
+              <span
+                class="social__arrow arrow arrow--up-right"
+                aria-hidden="true"
+              ></span>
+            </a>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <span>© <span id="year">2026</span> Christopher G</span>
+          <a
+            href="https://open.spotify.com/track/34xTFwjPQ1dC6uJmleno7x?si=25cdf962f5c543e7"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="footer__mid">Godspeed.</span>
+          </a>
+          <a href="#top"
+            >Back to top <span class="arrow arrow--up" aria-hidden="true"></span
+          ></a>
+        </footer>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
 </html>
